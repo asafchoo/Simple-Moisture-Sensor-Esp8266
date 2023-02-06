@@ -1,0 +1,31 @@
+#include <Servo.h>  // ספריית מנוע הסרוו
+int Value = 0;    // משתנה שלתוכו נזין את הערך מהחיישן
+float minV = 331;   // המדידה המינימלית ביותר של חיישן הלחות - לח
+float maxV = 724;  // המדידה הגבוהה ביותר של חיישן הלחות - יבש
+int servomoves = 0;  // משתנה שיכיל את הצעדים של המנוע
+
+Servo servo;    // יצירת "אובייקט" שנקרא סרוו
+
+void setup() {
+  Serial.begin(9600); // פתח קשר עם המחשב, בקצב תקשורת 9600
+  servo.attach(5, 500, 2400);  //D1
+  servo.write(0);
+}
+
+
+void loop() {
+  Value = analogRead(A0);  // השתמש בערכים שמגיעים מ A0
+  Serial.print("Value = ");
+  Serial.print(Value);
+  Serial.print(" | minV =");
+  Serial.print(minV);
+  Serial.print(" | maxY =");
+  Serial.println(maxV);
+  int formula = (100 - ((Value - minV)/((maxV-minV)/100)));
+  Serial.print(formula);
+  Serial.println("%");
+  servomoves = map(formula, 0, 100, 0, 180);
+  Serial.println(servomoves);
+  servo.write(servomoves);
+  delay(2000);
+}
