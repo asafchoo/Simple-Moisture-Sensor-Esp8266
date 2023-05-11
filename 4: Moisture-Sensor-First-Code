@@ -1,0 +1,13 @@
+#define LED 16    // מגדירים את נורית הלד = D0
+int Value = 0;    // משתנה שלתוכו נזין את הערך מהחיישן
+
+void setup() {
+  Serial.begin(9600); // פתח קשר עם המחשב, בקצב תקשורת 9600
+  pinMode(LED, OUTPUT);
+}
+
+void loop() {
+  Value = analogRead(A0);  // השתמש בערכים שמגיעים מ A0
+  Serial.println(Value);   // הדפס את הערך שיצא על המסך
+  delay(1000);
+}
