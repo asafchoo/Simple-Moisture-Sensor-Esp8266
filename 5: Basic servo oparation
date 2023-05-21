@@ -1,0 +1,20 @@
+#include <Servo.h>  // ספריית מנוע הסרוו             
+int servomoves = 0;  // משתנה שיכיל את הצעדים של המנוע
+Servo servo;    // יצירת "אובייקט" שנקרא סרוו
+
+void setup() {
+  Serial.begin(9600); // פתח קשר עם המחשב, בקצב תקשורת 9600
+  servo.attach(5, 500, 2400);  //D1
+  servo.write(0);
+}
+
+void loop() {
+ servomoves = 180;
+ Serial.println(servomoves);
+ servo.write(servomoves);
+ delay(2000);
+ servomoves = 0;
+ Serial.println(servomoves);
+ servo.write(servomoves);
+ delay(2000);
+}
