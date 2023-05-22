@@ -4,7 +4,7 @@ Servo servo;    // יצירת "אובייקט" שנקרא סרוו
 
 void setup() {
   Serial.begin(9600); // פתח קשר עם המחשב, בקצב תקשורת 9600
-  servo.attach(5, 500, 2400);  //D1
+  servo.attach(16, 500, 2400);  //D0
   servo.write(0);
 }
 
